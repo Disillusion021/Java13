@@ -4,7 +4,7 @@ public class Demo1_1 {
 
     public static void main(String[] args) {
         String welcome = "*************欢迎登录后台管理系统**************";
-        String account = "1004";
+        String account = "1005";
         String password = "******";
         String ending = "***********************************************";
         System.out.println(welcome);
