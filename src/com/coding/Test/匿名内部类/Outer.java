@@ -21,29 +21,47 @@ package com.coding.Test.匿名内部类;
 //        7. jdk底层在创建匿名内部类，立即就创建了一个匿名内部类的实例
 //        8. 匿名内部类只能使用一次
 
+// 匿名内部类和局部内部类差不多，都是局部内部类，只不过局部内部类是自己声明了一个类，在作用域里手动new一个来使用
+// 而匿名内部类是在局部方法或代码块内(临时)继承一个类或实现一个接口，并且在继承或实现的同时new了一个实例出来。
+// 匿名内部类和局部内部类都相当于一个局部变量，都可以直接调用外部类的所有成员。
+// 而lambda表达式与匿名内部类相似，不过lambda表达式只能用于只有一个方法的接口(抽象类和类都不可以),相当于直接动态实现了这个接口，并实现了接口的唯一的抽象方法。
+
 public class Outer {
     public static void talk(Animal animal){
         animal.speak();
     }
+
+    public static void talk(Person person) {
+        person.speak();
+    }
+
+    private static void speakLoudly() {
+        System.out.println("超大声讲话");
+    }
+
     public static void main(String[] args) {
-//        Animal cat = new Cat();
-//        cat.speak();
-//        Animal dog = new Dog();
-//        dog.speak();
+
+        Animal cat0 = new Cat();
+        cat0.speak();
+        Animal dog0 = new Dog();
+        dog0.speak();
+
         Animal cat = new Animal(){
             @Override
             public void speak() {
                 System.out.println("小猫喵喵叫");
+                speakLoudly();
             }
         };
         Animal dog = new Animal(){
             @Override
             public void speak() {
                 System.out.println("小狗汪汪叫");
+                speakLoudly();
             }
         };
-        cat.speak();
-        dog.speak();
+        talk(cat);
+        talk(dog);
 
         //匿名内部类可以直接作为实参传递给方法中的形参。可以实现一种简洁灵活的多态。
         talk(
@@ -51,6 +69,7 @@ public class Outer {
                     @Override
                     public void speak() {
                         System.out.println("老虎震天啸");
+                        speakLoudly();
                     }
                 }
         );
@@ -59,9 +78,22 @@ public class Outer {
                     @Override
                     public void speak() {
                         System.out.println("狮子怒涛吼");
+                        speakLoudly();
                     }
                 }
         );
+
+        talk(
+                new Person() {
+                    @Override
+                    public void speak() {
+                        System.out.println("学生讲了些闲话");
+                        speakLoudly();
+                    }
+                }
+        );
+
+        talk(()-> System.out.println("啊啊啊啊啊"));
     }
 }
 
@@ -69,15 +101,20 @@ interface Animal {
     void speak();
 }
 
-//class Cat implements Animal {
-//    @Override
-//    public void speak() {
-//        System.out.println("小猫喵喵叫");
-//    }
-//}
-//class Dog implements Animal {
-//    @Override
-//    public void speak() {
-//        System.out.println("小狗汪汪叫");
-//    }
-//}
+ class Person {
+    void speak() {
+        System.out.println("老师讲了一堆废话");
+    }
+}
+class Cat implements Animal {
+    @Override
+    public void speak() {
+        System.out.println("小猫喵喵叫");
+    }
+}
+class Dog implements Animal {
+    @Override
+    public void speak() {
+        System.out.println("小狗汪汪叫");
+    }
+}
