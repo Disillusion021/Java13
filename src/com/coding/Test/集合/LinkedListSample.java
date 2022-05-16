@@ -43,10 +43,11 @@ public class LinkedListSample {
     }
 }
 
+// 定义一个Node类，Node对象表示双向链表的一个节点
 class Node {
-    public Object item;
-    public Node next;
-    public Node pre;
+    public Object item; // 真正存放数据
+    public Node next; // 指向下一个节点
+    public Node pre; // 指向下一个节点
 
     public Node(Object item) {
         this.item = item;
