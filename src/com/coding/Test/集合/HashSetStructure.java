@@ -1,11 +1,11 @@
 package com.coding.Test.集合;
 
 
-public class HashSetSample {
+public class HashSetStructure {
     public static void main(String[] args) {
         //模拟一个HashSet的底层(HashMap的底层结构);
         //创建一个Node[]数组
-        //有些人，直接把Node[]数组称为表
+        //有些人，直接把Node[]数组称为table
         HNode[] table = new HNode[16];
 
         HNode john = new HNode("john");
