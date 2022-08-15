@@ -1,7 +1,9 @@
 package com.coding.日期类;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -26,5 +28,11 @@ public class TestLocalDateTime {
         Date date = Date.from(now);
         // Date -> Instant
         Instant instant = date.toInstant();
+
+        // LocalDate -> LocalDateTime -> 
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fixDate = LocalDate.parse("2022-08-08", fmt);
+        Long attDate = fixDate.atStartOfDay().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        System.out.println("LocalDate转换成的时间戳为:" + attDate);
     }
 }
