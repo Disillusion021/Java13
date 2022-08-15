@@ -47,6 +47,7 @@ class BB implements CustomGenericI<Integer, Double> {
 
 }
 // 自定义泛型接口
+// 泛型接口的泛型类型在继承接口或者实现接口时确定
 public interface CustomGenericI<U, R> {
 
     // 注意细节
