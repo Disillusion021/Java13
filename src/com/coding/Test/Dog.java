@@ -3,6 +3,13 @@ package com.coding.Test;
 public class Dog {
     String name;
 
+    public Dog() {
+    }
+
+    public Dog(String name) {
+        this.name = name;
+    }
+
     public void bark() {
         System.out.println(name + " says Ruff!");
     }
@@ -25,5 +32,13 @@ public class Dog {
             myDogs[x].bark();
             x = x + 1;
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
