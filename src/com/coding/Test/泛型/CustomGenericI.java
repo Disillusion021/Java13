@@ -7,7 +7,7 @@ interface IA extends CustomGenericI<String, Double> {
 
 // 当我们去实现IA接口时，因为IA在继承CustomGenericI接口时，指定了U为String，R为Double。
 // 所以在实现CustomGenericI接口的方法时，会使用String替换U，使用String替换R。
-class AA implements IA {
+class AAA implements IA {
 
     @Override
     public Double get(String u) {
@@ -28,7 +28,7 @@ class AA implements IA {
 
 // 实现接口时，直接指定泛型接口的类型
 // 给U指定了Integer，给R指定了Double
-class BB implements CustomGenericI<Integer, Double> {
+class BBB implements CustomGenericI<Integer, Double> {
 
     @Override
     public Double get(Integer u) {

@@ -1,11 +1,14 @@
 package com.coding.Test.集合;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class ArraySort {
 
     public static void main(String[] args) {
+        int[] ints = {3,2,1,4};
+        String ss = "1,2,a,34,s";
         Note[] notes = new Note[4];
         notes[0] = new Note("红楼梦", 100);
         notes[1] = new Note("金瓶梅", 90);
@@ -19,6 +22,26 @@ public class ArraySort {
             }
         });
         System.out.println(Arrays.toString(notes));
+        Integer[] is = Arrays.stream(ints).boxed().toArray(Integer[]::new);
+//        Arrays.sort(is, Collections.reverseOrder());
+        Arrays.sort(is, Collections.reverseOrder(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        }));
+//        Arrays.sort(is, new Comparator<Integer>() {
+//            @Override
+//            public int compare(Integer o1, Integer o2) {
+//                return o2 - o1;
+//            }
+//        });
+        for (int i = 0; i < ints.length; i++) {
+            System.out.println(ints[i]);
+        }
+        for (int i = 0; i < is.length; i++) {
+            System.out.println(is[i]);
+        }
     }
 
 }

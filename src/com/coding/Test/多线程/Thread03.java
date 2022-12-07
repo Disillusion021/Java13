@@ -2,11 +2,11 @@ package com.coding.Test.多线程;
 
 public class Thread03 {
     public static void main(String[] args) {
-        Dog d = new Dog();    
-        // 创建一个Thread对象，把实现了Runnable的接口传进去，调用start方法开启子线程    
+        Dog d = new Dog();
+        // 创建一个Thread对象，把实现了Runnable的接口传进去，调用start方法开启子线程
         // new Thread(d).start();
-        System.out.println(System.getProperty("java.io.tmpdir")); 
-        // new ThreadProxy(d).start();
+        new ThreadProxy(d).start();
+        System.out.println(System.getProperty("java.io.tmpdir"));
     }
 }
 
@@ -25,7 +25,8 @@ class ThreadProxy implements Runnable {
     @Override
     public void run() {
         if (target != null) {
-            target.run();
+            // target.run();
+            new Thread(target).start();
         }
     }
 
@@ -57,7 +58,7 @@ class Dog implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }        
+        }
     }
 
 }
