@@ -32,7 +32,7 @@ public class TestLocalDateTime {
         // LocalDate -> LocalDateTime -> 
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate fixDate = LocalDate.parse("2022-08-08", fmt);
-        Long attDate = fixDate.atStartOfDay().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        long attDate = fixDate.atStartOfDay().toInstant(ZoneOffset.of("+8")).toEpochMilli();
         System.out.println("LocalDate转换成的时间戳为:" + attDate);
     }
 }
