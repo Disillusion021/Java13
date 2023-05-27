@@ -1,14 +1,13 @@
 package com.coding.Test.泛型;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
 import java.util.Map.Entry;
 
 public class GenericDemo6 {
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         DAO<User> dao = new DAO<>();
         dao.save("0", new User(0, 18, "西施"));
         dao.save("1", new User(1, 15, "貂蝉"));
@@ -16,7 +15,7 @@ public class GenericDemo6 {
         dao.save("3", new User(3, 17, "小乔"));
         dao.save("4", new User(4, 22, "lucy"));
         dao.update("4", new User(4, 26, "Linda"));
-        dao.delete("5");
+        dao.delete("4");
         System.out.println(dao.get("1"));
         System.out.println(dao.list());
         System.out.println(dao.list2());
@@ -95,11 +94,7 @@ class DAO<T> {
     }
 
     public List<T> list2() {
-        List<T> list = new ArrayList<>();
-        for(T entity : map.values()) {
-            list.add(entity);
-        }
-        return list;
+        return new ArrayList<>(map.values());
     }
 
     public void delete(String id) {

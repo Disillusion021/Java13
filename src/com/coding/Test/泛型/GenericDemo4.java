@@ -137,30 +137,19 @@ class MyDate {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + day;
-        result = prime * result + month;
-        result = prime * result + year;
-        return result;
+        int h = 1;
+        h = 31 * h + day;
+        h = 31 * h + month;
+        h = 31 * h + year;
+        return h;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        MyDate other = (MyDate) obj;
-        if (day != other.day)
-            return false;
-        if (month != other.month)
-            return false;
-        if (year != other.year)
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyDate myDate = (MyDate) o;
+        return month == myDate.month && day == myDate.day && year == myDate.year;
     }
 
 }

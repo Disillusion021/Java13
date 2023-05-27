@@ -3,6 +3,7 @@ package com.coding.Test.泛型;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Objects;
 
 public class GenericDemo3 {
     public static void main(String[] args) {
@@ -53,33 +54,24 @@ class Student {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((age == null) ? 0 : age.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
+        int h = 1;
+        h = 31 * h + ((age == null) ? 0 : age.hashCode());
+        h = 31 * h + ((name == null) ? 0 : name.hashCode());
+        return h;
     }
 
+    // 或者直接用Objects工具类
+    // @Override
+    // public int hashCode() {
+    //     return Objects.hash(name, age);
+    // }
+
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Student other = (Student) obj;
-        if (age == null) {
-            if (other.age != null)
-                return false;
-        } else if (!age.equals(other.age))
-            return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || o.getClass() != getClass()) return false;
+        Student other = (Student) o;
+        return Objects.equals(age, other.getAge()) && Objects.equals(name, other.getName());
     }
 
     @Override
