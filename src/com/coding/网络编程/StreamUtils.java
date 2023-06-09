@@ -16,25 +16,28 @@ public class StreamUtils {
 
     /**
      * 将输入流写入输出流
-     * @param inputStream 输入流
+     *
+     * @param inputStream  输入流
      * @param outputStream 输出流
      * @return 返回输入流和输出流
      * @throws IOException 有异常则抛出
      */
     public static BothStream inputToOut(InputStream inputStream, OutputStream outputStream) throws IOException {
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
+        BufferedInputStream bis = new BufferedInputStream(inputStream);
+        BufferedOutputStream bos = new BufferedOutputStream(outputStream);
         int readNum;
         byte[] picBuff = new byte[1024];
-        while ((readNum = inputStream.read(picBuff)) != -1) {
-            bufferedOutputStream.write(picBuff, 0, readNum);
+        while ((readNum = bis.read(picBuff)) != -1) {
+            bos.write(picBuff, 0, readNum);
         }
-        bufferedOutputStream.flush();
-        return new BothStream(inputStream, bufferedOutputStream);
+        bos.flush();
+        return new BothStream(bis, bos);
     }
 
     /**
      * 打印输入流中的短文本
-     * @param inputStream  输入流
+     *
+     * @param inputStream 输入流
      * @return 返回输入流
      * @throws IOException 有异常则抛出
      */
@@ -48,14 +51,16 @@ public class StreamUtils {
 
     /**
      * 将输入流转换为 byte[],把文件读入到内存中
+     *
      * @param is 输入流
      * @return 返回byte[]字节数组
      */
-    public static byte[] streamToByteArray(InputStream is) throws IOException {
+    public static byte[] inputToByteArray(InputStream is) throws IOException {
+        BufferedInputStream bis = new BufferedInputStream(is);
         try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
             int readNum;
             byte[] buf = new byte[1024];
-            while ((readNum = is.read(buf)) != -1) {
+            while ((readNum = bis.read(buf)) != -1) {
                 bos.write(buf, 0, readNum);
             }
             return bos.toByteArray();

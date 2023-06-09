@@ -15,9 +15,12 @@ public class TCPFileCopyClient1 {
         // 通知服务端写入结束
         socket.shutdownOutput();
         // 接收服务器端回复
-        InputStream sockReceiveReply = StreamUtils.inputPrintString(socket.getInputStream());
+        // InputStream sockReceiveReply = StreamUtils.inputPrintString(socket.getInputStream());
+        InputStream receiveReply = socket.getInputStream();
+        byte[] bytes = StreamUtils.inputToByteArray(receiveReply);
+        System.out.println(new String(bytes));
         // 关闭资源
-        sockReceiveReply.close();
+        receiveReply.close();
         bothStream.outputStream.close();
         bothStream.inputStream.close();
         socket.close();
