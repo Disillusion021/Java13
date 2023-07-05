@@ -1,4 +1,4 @@
-package com.coding.Test.线程池;
+package com.coding.Test.连接池;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
@@ -30,7 +30,8 @@ public class DruidUtil {
         return ds.getConnection();
     }
 
-    // 关闭连接, 在数据库连接池中, 关闭连接, 并不是真正的关闭, 而是将连接归还给数据库连接池
+    // 关闭连接, 在数据库连接池中,
+    // 强调: 在数据库连接池技术中,close,并不是真正的关闭连接,而是将使用的连接对象Connection对象放回数据库连接池
     public static void close(ResultSet rs, PreparedStatement ps, Connection conn) {
         try {
             if (rs != null) {
